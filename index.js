@@ -29,7 +29,9 @@ bot.on("message", async message => {
     }
 
     //!mute @<username> || !mute <user id> command
-    if(command === `${prefix}jam`) {
+    if(command === `${prefix}mute`) {
+message.channel.sendMessage("Jamming their signal.");
+/*
         //Get the mentioned user, return if there is none.
         let toMute = message.mentions.users.fisrt() || message.guild.members.get(args[0]);
 //Make this message sound more like mute.
@@ -39,6 +41,7 @@ bot.on("message", async message => {
 
         //Check if the command executor has the right permission to do this command.
         //If the mutee has the same or a higher role than the muter, return.
+*/
     }
 });
 
