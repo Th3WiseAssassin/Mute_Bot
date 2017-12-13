@@ -25,10 +25,10 @@ bot.on("message", async message => {
             .addField("ID", message.author.id)
             .addField("Created At", message.author.createdAt);
 */
-        
+
         message.channel.sendEmbed(embed);
 
-        return;
+//        return;
     }
 });
 
