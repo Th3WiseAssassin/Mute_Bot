@@ -1,5 +1,5 @@
-const botSettings = require("./botSettings.json"); //import the bot settings from botSettings.json file
-const prefix = botSettings.prefix; //sets the prefix from the botSettings.json into a variable called prefix to save keystrokes
+//const botSettings = require("./botSettings.json"); //import the bot settings from botSettings.json file
+const prefix = "!"; //botSettings.prefix; //sets the prefix from the botSettings.json into a variable called prefix to save keystrokes
 const Discord = require('discord.js'); //imports the discord.js library
 const bot = new Discord.Client(); //creates a new Discord client called bot
 
