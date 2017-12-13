@@ -27,6 +27,19 @@ bot.on("message", async message => {
 
         return;
     }
+
+    //!mute @<username> || !mute <user id> command
+    if(command === `${prefix}mute`) {
+        //Get the mentioned user, return if there is none.
+        let toMute = message.mentions.users.fisrt() || message.guild.members.get(args[0]);
+//Make this message sound more like mute.
+        if (!tomute) return message.channel.sendMessage("You did not specify a user mention or ID"); //If the the command isn't entered correctly say the message here
+
+        return message.reply(toMute.username || toMute.user.username);
+
+        //Check if the command executor has the right permission to do this command.
+        //If the mutee has the same or a higher role than the muter, return.
+    }
 });
 
 //bot.login('<Inset Bot Token Here>'); //for running from pc don't change this
