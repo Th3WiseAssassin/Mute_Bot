@@ -20,10 +20,9 @@ bot.on("message", async message => {
             .setDescription("This is the user's info!")
             .setColor("#008000")
             .addField("Full Username", message.author.username + "#" + message.author.discriminator)
-            //worked to here
             .addField("ID", message.author.id)
-//            .addField("Created At", message.author.createdAt);
-
+            //worked to here
+            .addField("Created At", message.author.createdAt);
 
         message.channel.sendEmbed(embed);
 
