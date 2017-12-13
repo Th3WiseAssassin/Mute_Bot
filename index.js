@@ -13,13 +13,19 @@ bot.on("message", async message => {
 
     if(!command.startsWith(prefix)) return; //if message doesn't start with the prefix ignore the command
 
+    //!userinfo command
     if(command === `${prefix}userinfo`){
         let embed = new Discord.RichEmbed()
             .setAuthor(message.author.username)
             .setDescription("This is the user's info!")
-            .setColor("#008000");
+            .setColor("#008000")
+            .setField("Full Username", `${message.author.username}#${message.author.discriminator}`)
+            .addField("ID", message.author.id)
+            .addField("Created At", message.author.createdAt);
         
         message.channel.sendEmbed(embed);
+
+        return;
     }
 });
 
