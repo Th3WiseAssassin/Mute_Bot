@@ -29,5 +29,5 @@ bot.on("message", async message => {
     }
 });
 
-//bot.login('Mzg5MjQxNDg5MjgyMDM5ODE4.DQ4-3A.3DUBhTxufrncpz5CtaYRTRkGECI'); //for running from pc don't change this
+//bot.login('<Inset Bot Token Here>'); //for running from pc don't change this
 bot.login(process.env.BOT_TOKEN); //for running from heroku
