@@ -32,7 +32,7 @@ bot.on("message", async message => {
     if(command === `${prefix}mute`) {
         //Get the mentioned user, return if there is none.
         let toMute = message.mentions.users.fisrt();// || message.guild.members.get(args[0]);
-message.channel.sendMessage("Jamming the signal.");
+return message.channel.sendMessage("Jamming the signal.");
 /*
 //Make this message sound more like mute.
         if (!toMute) return message.channel.sendMessage("You did not specify a user mention or ID!"); //If the the command isn't entered correctly say the message here
