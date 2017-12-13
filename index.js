@@ -19,7 +19,7 @@ bot.on("message", async message => {
             .setAuthor(message.author.username)
             .setDescription("This is the user's info!")
             .setColor("#008000")
-            .setField("Full Username", `${message.author.username}#${message.author.discriminator}`)
+            .addField("Full Username", `${message.author.username}#${message.author.discriminator}`)
             .addField("ID", message.author.id)
             .addField("Created At", message.author.createdAt);
         
