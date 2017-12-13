@@ -31,8 +31,11 @@ bot.on("message", async message => {
     //!mute @<username> || !mute <user id> command
     if(command === `${prefix}mute`) {
         //Get the mentioned user, return if there is none.
+/*---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Works until this point but I need a break this troubleshooting is killing me
+left of at 17 minutes I'll pic up there once I figure out how to fix this code.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
         let toMute = message.mentions.users.fisrt();// || message.guild.members.get(args[0]);
-return message.channel.sendMessage("Jamming the signal.");
 /*
 //Make this message sound more like mute.
         if (!toMute) return message.channel.sendMessage("You did not specify a user mention or ID!"); //If the the command isn't entered correctly say the message here
