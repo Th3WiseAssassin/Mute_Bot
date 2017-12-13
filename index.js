@@ -32,7 +32,7 @@ bot.on("message", async message => {
     if(command === `${prefix}mute`) {
 message.channel.sendMessage("Jamming their signal.");
         //Get the mentioned user, return if there is none.
-        let toMute = message.mentions.users.fisrt() || message.guild.members.get(args[0]);
+        let toMute = message.mentions.users.fisrt();// || message.guild.members.get(args[0]);
 message.channel.sendMessage("Jamming the signal.");
 /*
 //Make this message sound more like mute.
