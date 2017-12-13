@@ -18,13 +18,12 @@ bot.on("message", async message => {
         let embed = new Discord.RichEmbed()
             .setAuthor(message.author.username)
             .setDescription("This is the user's info!")
-            .setColor("#008000")
-            .addField("Full Username", message.author.username + "#" + message.author.discriminator)
-            .addField("ID", message.author.id)
-            //worked to here
-            .addField("Created At", message.author.createdAt);
+            .setColor("#008000") //sets the color of the side bar
+            .addField("Full Username", message.author.username + "#" + message.author.discriminator) //outputs the users full name including there name and discriminator (ex: Stephen#9557)
+            .addField("ID", message.author.id) //outputs the users id #
+            .addField("Created At", message.author.createdAt); //outputs when the user created their Discord account
 
-        message.channel.sendEmbed(embed);
+        message.channel.sendEmbed(embed); //outputs all the infor save in the embed above
 
         return;
     }
