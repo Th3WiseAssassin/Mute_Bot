@@ -29,7 +29,7 @@ bot.on("message", async message => {
     }
 
     //!mute @<username> || !mute <user id> command
-    if(command === "!mute") {
+    if(command === `${prefix}mute`) {
         //Get the mentioned user, return if there is none.
         let toMute = message.mentions.users.fisrt() || message.guild.members.get(args[0]);
 //Make this message sound more like mute.
