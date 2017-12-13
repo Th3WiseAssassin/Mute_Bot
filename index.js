@@ -33,7 +33,7 @@ bot.on("message", async message => {
         //Get the mentioned user, return if there is none.
         let toMute = message.mentions.users.fisrt() || message.guild.members.get(args[0]);
 //Make this message sound more like mute.
-        if (!tomute) return message.channel.sendMessage("You did not specify a user mention or ID"); //If the the command isn't entered correctly say the message here
+        if (!toMute) return message.channel.sendMessage("You did not specify a user mention or ID!"); //If the the command isn't entered correctly say the message here
 
         return message.reply(toMute.username || toMute.user.username);
 
