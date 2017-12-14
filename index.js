@@ -35,12 +35,12 @@ bot.on("message", async message => {
 Works until this point but I need a break this troubleshooting is killing me
 left of at 17 minutes I'll pic up there once I figure out how to fix this code.
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
-        let toMute = message.mentions.users.fisrt() || message.guild.members.get(args[0]);
+        let toMute = message.mentions.users.fisrt();// || message.guild.members.get(args[0]);
 
 //Make this message sound more like mute.
         if (!toMute) return message.channel.sendMessage("You did not specify a user mention or ID!"); //If the the command isn't entered correctly say the message here
 
-        message.reply(toMute.username || toMute.user.username);
+        message.reply(toMute.username/* || toMute.user.username*/);
         return;
 
         //Check if the command executor has the right permission to do this command.
