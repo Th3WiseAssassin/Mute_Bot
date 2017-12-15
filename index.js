@@ -48,6 +48,22 @@ bot.on("message", async message => {
         } 
 
         let toMute = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
+
+        //check if the person is trying to mute themselves
+        if(toMute.id === message.author.id) {
+/*Make this message sound more like mute--------------
+                                                      |
+                                                      V                             */
+            return message.channel.send("You can not mute yourself.");
+        }
+
+        //check if the person is trying to mute someone with the same role or a higher role than themselves
+        if(toMute.highestRole.position >= message.member.highestRole.position) {
+/*Make this message sound more like mute------------------------------------
+                                                                            |
+                                                                            V                             */
+            return message.channel.send("You con not mute a mumber who is higher or has the same role as you.");
+        }
         
         //create a role called muted
         let role = message.guild.roles.find(r => r.name === "Muted");
