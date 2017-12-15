@@ -30,21 +30,22 @@ bot.on("message", async message => {
 
     //!mute @<username> || !mute <user id> command
     if(command === `${prefix}mute`) {
+        //Check if the command executor has the right permission to do this command.
+/*Make this message sound more like mute--------------------------------------------------------------------------
+                                                                                                                  |
+                                                                                                                  V                             */        
+        if(!message.member.hasPermission("MANAGE_MESSAGES")) return mesage.channel.sendMessage("You don't have the manage messages permission")//Checks to make sure that the person executing the !mute command has the permission 
+
         //Get the mentioned user, return if there is none.
-/*---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Works until this point but I need a break this troubleshooting is killing me
-left of at 17 minutes I'll pic up there once I figure out how to fix this code.
------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
-//Make this message sound more like mute.
         if (!message.mentions.users.first() && !message.guild.members.get(args[0])) {
+/*Make this message sound more like mute---------------------------------
+                                                                         |
+                                                                         V                             */
             return message.channel.sendMessage("You did not specify a user mention or ID!"); //If the the command isn't entered correctly say the message here
         } 
 
         let toMute = message.mentions.users.first() || message.guild.members.get(args[0]);
         
-        return message.channel.sendMessage(toMute.username || toMute.user.username);   
-
-        //Check if the command executor has the right permission to do this command.
         //If the mutee has the same or a higher role than the muter, return.
     }
 });
