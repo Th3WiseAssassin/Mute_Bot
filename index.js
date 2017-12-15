@@ -30,11 +30,14 @@ bot.on("message", async message => {
 
     //!mute @<username> || !mute <user id> command
     if(command === `${prefix}mute`) {
-        //Check if the command executor has the right permission to do this command.
-/*Make this message sound more like mute--------------------------------------------------------------------------
-                                                                                                                  |
-                                                                                                                  V                             */        
-        if(!message.member.hasPermission("MANAGE_MESSAGES")) return mesage.channel.sendMessage("You don't have the manage messages permission")//Checks to make sure that the person executing the !mute command has the permission 
+
+        //Check if the command executor has the right permission to do this command.        
+        if(!message.member.hasPermission("MANAGE_MESSAGES")) {
+/*Make this message sound more like mute---------------------------
+                                                                   |
+                                                                   V                             */
+         return mesage.channel.sendMessage("You don't have the manage messages permission")//Checks to make sure that the person executing the !mute command has the permission 
+        }
 
         //Get the mentioned user, return if there is none.
         if (!message.mentions.users.first() && !message.guild.members.get(args[0])) {
