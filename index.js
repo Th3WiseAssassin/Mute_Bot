@@ -62,7 +62,7 @@ bot.on("message", async message => {
 /*Make this message sound more like mute------------------------------------
                                                                             |
                                                                             V                             */
-            return message.channel.send("You con not mute a mumber who is higher or has the same role as you.");
+            return message.channel.send("You con not mute a member who is the same role or higher then you.");
         }
         
         //create a role called muted
