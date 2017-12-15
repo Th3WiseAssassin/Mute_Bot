@@ -36,11 +36,13 @@ Works until this point but I need a break this troubleshooting is killing me
 left of at 17 minutes I'll pic up there once I figure out how to fix this code.
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 //Make this message sound more like mute.
-        if (!message.mentions.users.fisrt() && !message.guild.members.get(args[0])) return message.channel.sendMessage("You did not specify a user mention or ID!"); //If the the command isn't entered correctly say the message here
+        if (!message.mentions.users.first() && !message.guild.members.get(args[0])) {
+            return message.channel.sendMessage("You did not specify a user mention or ID!"); //If the the command isn't entered correctly say the message here
+        } 
 
-        let toMute = message.mentions.users.fisrt() || message.guild.members.get(args[0]);
-
-        return message.channel.sendMessage(toMute.username || toMute.user.username);
+        let toMute = message.mentions.users.first() || message.guild.members.get(args[0]);
+        
+        return message.channel.sendMessage(toMute.username || toMute.user.username);   
 
         //Check if the command executor has the right permission to do this command.
         //If the mutee has the same or a higher role than the muter, return.
