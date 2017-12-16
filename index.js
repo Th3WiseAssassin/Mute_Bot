@@ -3,6 +3,9 @@ const prefix = "!"; //botSettings.prefix; //sets the prefix from the botSettings
 const Discord = require('discord.js'); //imports the discord.js library
 const bot = new Discord.Client(); //creates a new Discord client called bot
 
+//functions prototypes
+function HelloWorld();
+
 bot.on("message", async message => {
     if(message.author.bot) return; //ignore messages from bot accounts
     if(message.channel.type === "dm") return; //ignore dm's
@@ -140,7 +143,23 @@ bot.on("message", async message => {
 
         return;
     }
+
+    //testing using functionas the command
+    if(command === `${prefix}helloworld`){
+        HelloWorld();
+        return;
+    }
+
 });
 
 //bot.login('<Inset Bot Token Here>'); //for running from pc don't change this
-bot.login(process.env.BOT_TOKEN); //for running from heroku
+bot.login(process.env.BOT_TOKEN); //for running from heroku\
+
+
+
+//function definitions
+function HelloWorld()
+{
+    message.channel.send("Hello World!");
+    return;
+}
