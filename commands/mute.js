@@ -1,4 +1,5 @@
 const Discord = module.require("discord.js"); //imports the discord.js library
+const fs = require("fs"); //imports the fs library
 
 module.exports.run = async (bot, message,args) => {
         //Check if the command executor has the right permission to do this command.        
@@ -64,7 +65,19 @@ module.exports.run = async (bot, message,args) => {
                                                                                V                             */
         if(toMute.roles.has(role.id)) return message.channel.send("This user is already muted!");
 
+        if(args[1]) {
+            bot.muted[toMute.id] = {
+                guild: message.guild.id,
+                time: Date.now() + parseInt(args[1]) * 1000
+            }
+
+            fs.writeFile('./commands/muted.json', JSON.stringify(bot.muted, null, 4), err => {
+                if(err) throw err;
+            });
+        }
+
         await(toMute.addRole(role));
+
 /*Make this message sound more like mute---
                                            |
                                            V                             */

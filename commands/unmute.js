@@ -1,4 +1,5 @@
 const Discord = module.require("discord.js"); //imports the discord.js library
+const fs = require("fs"); //imports the fs library
 
 module.exports.run = async (bot, message,args) => {
         //Check if the command executor has the right permission to do this command.        
@@ -28,6 +29,13 @@ module.exports.run = async (bot, message,args) => {
         if(!role || !toMute.roles.has(role.id)) return message.channel.send("This user is not muted!");
 
         await(toMute.removeRole(role));
+
+        delete bot.muted[toMute.id];
+
+        fs.writeFile("./commands/muted.json", JSON.stringify(bot.muted, null, 4), err => {
+                if(err) throw err;
+                console.log(`I have unmuted ${toMute.user.tag}.`);
+        });
 /*Make this message sound more like mute---
                                            |
                                            V                             */

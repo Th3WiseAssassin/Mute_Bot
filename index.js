@@ -5,6 +5,7 @@ const prefix = "!"; //botSettings.prefix; //sets the prefix from the botSettings
 const bot = new Discord.Client(); //creates a new Discord client called bot
 
 bot.commands = new Discord.Collection();
+bot.muted = require("./commands/muted.json");
 
 fs.readdir("./commands/", (err, files) => {
     if(err) console.error(err);
@@ -17,11 +18,52 @@ fs.readdir("./commands/", (err, files) => {
 
     console.log('loading ${jsfiles.length} commands');
 
+
     jsfiles.forEach((f, i) => {
         let props = require(`./commands/${f}`)
         console.log(`${i + 1}: ${f} loaded!`);
         bot.commands.set(props.help.name, props);
     });
+});
+
+bot.on("ready", () => {
+    console.log(`Bot is ready! ${bot.user.username}`);
+
+    bot.setInterval(() => {
+        for(let i in bot.muted) {
+            let time = bot.muted[i].time;
+            let guildId = bot.muted[i].guild;
+            let guild = bot.guilds.get(guildId);
+            let member;
+            let mutedRole;
+            if(guildId && guild) {
+                member = guild.members.get(i);
+                mutedRole = guild.roles.find(r => r.name === "Muted");
+            }            
+            
+            if(!guildId || !guild || !member || !mutedRole) {
+                delete bot.muted[i];
+
+                fs.writeFile("./commands/muted.json", JSON.stringify(bot.muted, null, 4), err => {
+                    if(err) throw err;
+                });
+console.log("i removed an invalid entry");
+                continue;
+            }
+
+            if(Date.now() > time) {
+                console.log(`${i} is now able to be unmuted!`);
+
+                member.removeRole(mutedRole);
+                delete bot.muted[i];
+
+                fs.writeFile("./commands/muted.json", JSON.stringify(bot.muted, null, 4), err => {
+                    if(err) throw err;
+                    console.log(`I have unmuted ${member.user.tag}.`);
+                });
+            }
+        }
+    }, 5000);
 });
 
 bot.on("message", async message => {
