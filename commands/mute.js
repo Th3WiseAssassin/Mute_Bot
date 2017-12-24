@@ -70,7 +70,6 @@ module.exports.run = async (bot, message,args) => {
                 guild: message.guild.id,
                 time: Date.now() + parseInt(args[1]) * 1000
             }
-
             fs.writeFile('./commands/muted.json', JSON.stringify(bot.muted, null, 4), err => {
                 if(err) throw err;
             });
