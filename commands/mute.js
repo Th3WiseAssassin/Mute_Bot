@@ -70,12 +70,22 @@ module.exports.run = async (bot, message,args) => {
                 guild: message.guild.id,
                 time: Date.now() + parseInt(args[1]) * 1000
             }
+           
             fs.writeFile('./commands/muted.json', JSON.stringify(bot.muted, null, 4), err => {
                 if(err) throw err;
             });
         }
 
         await(toMute.addRole(role));
+
+        //adds custom permissions to the user to prevent them ffrom being able to send mnessages regardless of roles
+        message.guild.channels.forEach(async (channel, id) => {
+            await channel.overwritePermissions(toMute.id, {
+                ADD_REACTIONS: false,
+                SEND_MESSAGES: false,
+                CONNECT: false,
+            });
+        });
 
 /*Make this message sound more like mute---
                                            |

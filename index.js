@@ -1,6 +1,5 @@
 //const botSettings = require("./botSettings.json"); //import the bot settings from botSettings.json file
 const Discord = require('discord.js'); //imports the discord.js library
-const Dropbox = require('dropbox'); //imports the dropbox api
 const fs = require("fs"); //imports the fs module
 const prefix = "!"; //botSettings.prefix; //sets the prefix from the botSettings.json into a variable called prefix to save keystrokes
 const bot = new Discord.Client(); //creates a new Discord client called bot
@@ -17,7 +16,7 @@ fs.readdir("./commands/", (err, files) => {
         return;
     }
 
-    console.log('loading ${jsfiles.length} commands');
+    console.log(`loading ${jsfiles.length} commands`);
 
 
     jsfiles.forEach((f, i) => {
@@ -56,6 +55,13 @@ console.log("i removed an invalid entry");
                 console.log(`${i} is now able to be unmuted!`);
 
                 member.removeRole(mutedRole);
+
+                //delete the custom permissions given to a user effected by the !mute command
+                guild.channels.forEach(async (channel, id) => {
+                        toOverwrite = channel.permissionOverwrites.get(member.id);
+                        toOverwrite.delete();
+                });
+                
                 delete bot.muted[i];
 
                 fs.writeFile("./commands/muted.json", JSON.stringify(bot.muted, null, 4), err => {

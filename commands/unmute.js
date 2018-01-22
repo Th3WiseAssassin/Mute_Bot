@@ -30,6 +30,12 @@ module.exports.run = async (bot, message,args) => {
 
         await(toMute.removeRole(role));
 
+        //delete the custom permissions given to a user effected by the !mute command
+        message.guild.channels.forEach(async (channel, id) => {
+                toOverwrite = channel.permissionOverwrites.get(toMute.id);
+                toOverwrite.delete();
+        });
+
         delete bot.muted[toMute.id];
 
         fs.writeFile("./commands/muted.json", JSON.stringify(bot.muted, null, 4), err => {
